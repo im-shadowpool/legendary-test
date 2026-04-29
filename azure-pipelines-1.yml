@@ -1,0 +1,75 @@
+trigger:
+  - test
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  IMAGE_NAME: 'nextjs-app-test'
+  CONTAINER_NAME: 'test-frontend'
+
+steps:
+
+# 🕒 Generate timestamp
+- script: |
+    TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
+    echo "##vso[task.setvariable variable=IMAGE_TAG]$TIMESTAMP"
+  displayName: Generate Timestamp
+
+# 🔨 Build image
+- script: |
+    echo "🔨 Building image..."
+    docker build -t $(IMAGE_NAME):$(IMAGE_TAG) .
+    docker tag $(IMAGE_NAME):$(IMAGE_TAG) $(IMAGE_NAME):latest
+    echo "✅ Build done"
+  displayName: Build
+
+# 💾 Save image to tar
+- script: |
+    echo "📦 Saving image..."
+    docker save $(IMAGE_NAME):$(IMAGE_TAG) -o $(Build.ArtifactStagingDirectory)/image.tar
+    echo "✅ Saved image.tar"
+  displayName: Save Image
+
+#Debug for copying image
+- script: |
+    echo "Listing files..."
+    ls -lh $(Build.ArtifactStagingDirectory)
+  displayName: Debug Files
+
+# 📤 Copy to VM
+- task: CopyFilesOverSSH@0
+  displayName: Copy image to VM
+  inputs:
+    sshEndpoint: 'magnetme-ssh'
+    sourceFolder: '$(Build.ArtifactStagingDirectory)'
+    contents: 'image.tar'
+    targetFolder: '/home/azureuser'
+
+# 🚀 Deploy to VM (NO REGISTRY)
+- task: SSH@0
+  displayName: 'Deploy to VM (load → run)'
+  inputs:
+    sshEndpoint: 'magnetme-ssh'
+    runOptions: 'commands'
+    commands: |
+      set -e
+
+      echo "📦 Loading image..."
+      docker load -i /home/azureuser/image.tar
+      echo "🏷️ Tagging latest..."
+      docker tag $(IMAGE_NAME):$(IMAGE_TAG) $(IMAGE_NAME):latest
+
+      echo "🧹 Cleaning old container..."
+      docker rm -f $(CONTAINER_NAME) 2>/dev/null || true
+
+      echo "🚀 Running new test container on 3001..."
+      docker run -d -p 3001:3000 --name $(CONTAINER_NAME) --env-file /home/azureuser/test-site.env $(IMAGE_NAME):latest
+
+      echo "🧹 Keeping only last 4 images..."
+      docker images $(IMAGE_NAME) --format "{{.Repository}}:{{.Tag}} {{.CreatedAt}}" | sort -r | tail -n +5 | awk '{print $1}' | xargs -r docker rmi || true
+
+      echo "🧹 Removing tar file..."
+      rm -f /home/azureuser/image.tar
+
+      echo "✅ Deployment complete"

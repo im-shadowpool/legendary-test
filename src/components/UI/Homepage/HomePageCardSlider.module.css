@@ -1,0 +1,57 @@
+.cardContainer {
+  display: flex;
+  padding: 0 10vw;
+  height: 50vh;
+  align-items: center;
+  perspective: 1200px;
+  will-change: transform;
+}
+
+.eventCard {
+  position: relative;
+  flex-shrink: 0;
+  width: 425px;
+  height: 480px;
+  margin-left: -6px;
+  background: var(--color-secondary);
+  overflow: hidden;
+  border-radius: 16px;
+  transform-origin: center center;
+  z-index: 1;
+  will-change: transform;
+}
+
+.eventCard {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.eventCard:first-child {
+  margin-left: 0;
+}
+
+.cardImageWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  filter: brightness(0.5);
+}
+
+.fixedSectionContent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 0;
+}
+
+@media (max-width: 1024px) {
+  .cardContainer {
+    padding: 0 50vw;
+  }
+  .eventCard {
+    width: 325px;
+    height: 400px;
+  }
+}

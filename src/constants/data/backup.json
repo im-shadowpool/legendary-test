@@ -1,0 +1,437 @@
+{
+  "components": {
+    "contact_us_component": {
+      "subhead": "contact us",
+      "title": "Let’s create an amazing event <span>together</span>",
+      "description": "We put you first in our service. We’d like to sit down and listen to what you want for your event so we can craft the perfect design and capture the perfect moments. At Magnet-Me, your joy is our joy. We offer you the best quality for the best day of your life."
+    },
+    "testimonials_component": {
+      "subhead": "Testimonials",
+      "title": "Why Clients Choose <span>Magnet-Me</span> ",
+      "items": [
+        {
+          "desc": "Magnet-Me was great at our wedding!! We had so many comments from guests about how great the idea was! Every guest has them stored on their fridges. We love this idea compared to a traditional Photo Booth as people display the pictures. The magnets turned out amazing and Haim and his team did such fantastic job!",
+          "author": "Phoebe Mansfield",
+          "time": "4 weeks ago"
+        },
+        {
+          "desc": "Hired Magnet Me for our Christmas party and they were professional, friendly, and blended right into the event. The photos came out perfect, with a fun branded border to go with it. So nice seeing everyone put their magnets around our office to remember the event. Couldn’t be happier!",
+          "author": "Molly Kundid",
+          "time": "3 months ago"
+        },
+        {
+          "desc": "I can’t express enough how grateful I am for the incredible experience with Magnet Me for my 50th Birthday Celebration. Haim truly went above and beyond to provide the most outstanding and personalized service. Every single photo turned out beautifully, and the quality was just remarkable!...",
+          "author": "Bernadette Jimenez",
+          "time": "4 months ago"
+        },
+        {
+          "desc": "Absolutely loved having Magnet‑Me - Event Photo Magnets at our event! The team were professional, friendly, and made the whole experience fun. Guests couldn’t stop talking about the instant photo magnets — they’re a unique keepsake that everyone treasured. Communication was great and the magnets were high quality. Highly recommended!",
+          "author": "Anusha Joshi",
+          "time": "3 months ago"
+        },
+        {
+          "desc": "I reached out to Magnet Me at the last minute and they were very accommodating us. Haim was a pleasure to deal with from the very beginning with creating the artwork, to setting out the plans for the day, to the actual day, and after. People were so happy with the photos and we were happy with the outcome. Thank you Haim!",
+          "author": "Caulfield Park Bendigo Bank",
+          "time": "5 months ago"
+        }
+      ]
+    },
+    "patners_slider_component": {
+      "title": "",
+      "leftslider": [
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Catch.svg",
+          "alt": "Catch"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Anz.svg",
+          "alt": "Anz"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Fox-Hit-19.svg",
+          "alt": "Fox Hit 19"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/7-Logo.svg",
+          "alt": "7 Logo"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/My-deal-logo.svg",
+          "alt": "My Deal Logo"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/adcore-google.svg",
+          "alt": "Adcore Google"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Citi-and-taste-of-tennis.svg",
+          "alt": "Citi And Taste Of Tennis"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Redkite.svg",
+          "alt": "Redkite"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Nab.svg",
+          "alt": "Nab"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Ray-white.svg",
+          "alt": "Ray White"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/AECom.svg",
+          "alt": "AECom"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Ey-Building.svg",
+          "alt": "Ey Building"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Siemens-Healthineers.svg",
+          "alt": "Siemens Healthineers"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Hockingstuart.svg",
+          "alt": "Hockingstuart"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/B-Box.svg",
+          "alt": "B Box"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Westpac.svg",
+          "alt": "Westpac"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Melbourne-rebels.svg",
+          "alt": "Melbourne Rebels"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Porche.svg",
+          "alt": "Porche"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Tyre-power.svg",
+          "alt": "Tyre Power"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/UIA.svg",
+          "alt": "UIA"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Jewishcare.svg",
+          "alt": "Jewishcare"
+        }
+      ],
+      "rightslider": [
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Crownstaff.svg",
+          "alt": "Crownstaff"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Monash-University.svg",
+          "alt": "Monash University"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Richmond.svg",
+          "alt": "Richmond"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/SAP.svg",
+          "alt": "SAP"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Lifeline.svg",
+          "alt": "Lifeline"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Victoria-State-Goverment.svg",
+          "alt": "Victoria State Goverment"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Telstra-Super.svg",
+          "alt": "Telstra Super"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Masters-Builders.svg",
+          "alt": "Masters Builders"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Deakin-University.svg",
+          "alt": "Deakin University"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Melbourne-Stars-and-Cricket-Victoria.svg",
+          "alt": "Melbourne Stars And Cricket Victoria"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Bizcap.svg",
+          "alt": "Bizcap"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/OMD.svg",
+          "alt": "OMD"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/City-of-Casey.svg",
+          "alt": "City Of Casey"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Svenson-Barristers.svg",
+          "alt": "Svenson Barristers"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/AIB.svg",
+          "alt": "AIB"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/La-Trobe.svg",
+          "alt": "La Trobe"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/LU-Simon.svg",
+          "alt": "LU Simon"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Elbit-Systems.svg",
+          "alt": "Elbit Systems"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/GPC.svg",
+          "alt": "GPC"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Airwallex.svg",
+          "alt": "Airwallex"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/banyule.svg",
+          "alt": "Banyule"
+        }
+      ]
+    },
+    "slider_component": {
+      "slider_one": [
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Design-back_2x.webp",
+          "alt": "Design Back 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Design-front_2x.webp",
+          "alt": "Design Front 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Magnet-back_2x.webp",
+          "alt": "Magnet Back 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Magnet-front_2x.webp",
+          "alt": "Magnet Front 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Memory-back_2x.webp",
+          "alt": "Memory Back 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Memory-front_2x-1.webp",
+          "alt": "Memory Front 2x 1"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Photos-back_2x.webp",
+          "alt": "Photos Back 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Photos-front_2x.webp",
+          "alt": "Photos Front 2x"
+        }
+      ],
+      "slider_two": [
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Photos-front_2x.webp",
+          "alt": "Photos Front 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Photos-back_2x.webp",
+          "alt": "Photos Back 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Memory-front_2x-1.webp",
+          "alt": "Memory Front 2x 1"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Memory-back_2x.webp",
+          "alt": "Memory Back 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Magnet-front_2x.webp",
+          "alt": "Magnet Front 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Magnet-back_2x.webp",
+          "alt": "Magnet Back 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Design-front_2x.webp",
+          "alt": "Design Front 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Design-back_2x.webp",
+          "alt": "Design Back 2x"
+        }
+      ],
+      "slider_three": [
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Photos-front_2x.webp",
+          "alt": "Photos Front 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Photos-back_2x.webp",
+          "alt": "Photos Back 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Memory-front_2x-1.webp",
+          "alt": "Memory Front 2x 1"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Memory-back_2x.webp",
+          "alt": "Memory Back 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Magnet-front_2x.webp",
+          "alt": "Magnet Front 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Magnet-back_2x.webp",
+          "alt": "Magnet Back 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Design-front_2x.webp",
+          "alt": "Design Front 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Design-back_2x.webp",
+          "alt": "Design Back 2x"
+        }
+      ],
+      "slider_four": [
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Photos-front_2x.webp",
+          "alt": "Photos Front 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Photos-back_2x.webp",
+          "alt": "Photos Back 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Memory-front_2x-1.webp",
+          "alt": "Memory Front 2x 1"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Memory-back_2x.webp",
+          "alt": "Memory Back 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Magnet-front_2x.webp",
+          "alt": "Magnet Front 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Magnet-back_2x.webp",
+          "alt": "Magnet Back 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Design-front_2x.webp",
+          "alt": "Design Front 2x"
+        },
+        {
+          "src": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Design-back_2x.webp",
+          "alt": "Design Back 2x"
+        }
+      ]
+    },
+    "eventtype_component": {
+      "event_one": {
+        "title": "Premium Magnet <span>Photo Prints</span>. Made Live at Your Event.",
+        "subhead": "Photo Magnets for All Events",
+        "description": "From weddings to brand activations, we capture real moments and transform them into personalised photo magnets your guests take home instantly."
+      },
+      "cards": [
+        {
+          "id": 1,
+          "image_one": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/1-scaled.webp",
+          "image_two": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/2-scaled.webp",
+          "title": "Weddings",
+          "link": "#"
+        },
+        {
+          "id": 2,
+          "image_one": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/2-1-scaled.webp",
+          "image_two": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/1-1-scaled.webp",
+          "title": "Corporate Events",
+          "link": "#"
+        },
+        {
+          "id": 3,
+          "image_one": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/3-scaled.webp",
+          "image_two": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/2-2-scaled.webp",
+          "title": "Graduations",
+          "link": "#"
+        },
+        {
+          "id": 4,
+          "image_one": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/2-3-scaled.webp",
+          "image_two": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/1-2-scaled.webp",
+          "title": "Christmas parties",
+          "link": "#"
+        },
+        {
+          "id": 5,
+          "image_one": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/2-4-scaled.webp",
+          "image_two": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/1-3-scaled.webp",
+          "title": "Trade shows & brand activations",
+          "link": "#"
+        },
+        {
+          "id": 6,
+          "image_one": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/1-4-scaled.webp",
+          "image_two": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/2-5-scaled.webp",
+          "title": "Sport events",
+          "link": "#"
+        },
+        {
+          "id": 7,
+          "image_one": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/2-6-scaled.webp",
+          "image_two": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/1-5-scaled.webp",
+          "title": "Birthdays",
+          "link": "#"
+        },
+        {
+          "id": 8,
+          "image_one": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/2-7-scaled.webp",
+          "image_two": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/1-6-scaled.webp",
+          "title": "Fundraisers",
+          "link": "#"
+        },
+        {
+          "id": 9,
+          "image_one": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/1-7-scaled.webp",
+          "image_two": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/2-8-scaled.webp",
+          "title": "Award Night",
+          "link": "#"
+        },
+        {
+          "id": 10,
+          "image_one": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/1-8-scaled.webp",
+          "image_two": "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/2-9-scaled.webp",
+          "title": "Bar Mitzvah",
+          "link": "#"
+        }
+      ],
+      "event_two": {
+        "title": "Events <span>Big and Small</span>. From Weddings to Brand Activations.",
+        "buttontext": "Plan your event",
+        "buttonlink": "/contact-us"
+      }
+    }
+  }
+}

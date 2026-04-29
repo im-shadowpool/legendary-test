@@ -1,0 +1,64 @@
+.wrapper {
+  width: 425px;
+  height: 455px;
+  transform: rotate(6deg);
+  perspective: 1200px;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.even-card {
+  transform: rotate(-6deg) !important;
+}
+.wrapper:hover {
+  transform: rotate(0deg);
+}
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  border-radius: 18px;
+  box-shadow: 2.217px 8.867px 33.253px 0 rgba(112, 144, 176, 0.3);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* Flip */
+.flipped {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  border: 8.867px solid var(--color-primary);
+  overflow: hidden;
+}
+
+/* Front */
+.front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Back */
+.back {
+  transform: rotateY(180deg);
+}
+
+.back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .wrapper {
+    width: 325px;
+    height: 355px;
+    transform: rotate(3deg);
+  }
+}
