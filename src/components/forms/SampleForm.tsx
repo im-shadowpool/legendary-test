@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 import CustomSelect from "./CustomSelect";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -10,79 +10,120 @@ const RECAPTCHA_SITE_KEY =
   process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
   "6LeUEMgsAAAAAA5DhG8IYcd2ISjKxsZLhnYRlYM0";
 
-export default function EventForm() {
+// Allowed file types and max size (5MB)
+const ALLOWED_FILE_TYPES = [
+  "image/jpeg",
+  "image/png",
+  "image/gif",
+  "image/webp",
+  "application/pdf",
+];
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
+export default function SampleForm() {
   const pathname = usePathname();
   const router = useRouter();
   const recaptchaRef = useRef<any>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [recaptchaError, setRecaptchaError] = useState("");
+
   const [form, setForm] = useState({
     fullName: "",
     email: "",
     phone: "",
-    guests: "",
-    eventType: "",
-    venue: "",
-    date: "",
-    time: "",
     source: "",
     message: "",
+    // New text fields
+    fullAddress: "",
+    suburb: "",
+    statePostcode: "",
   });
+
+  // Separate state for file uploads
+  const [photo1, setPhoto1] = useState<File | null>(null);
+  console.log("photo1", photo1);
+  const [photo2, setPhoto2] = useState<File | null>(null);
+  console.log("photo2", photo2);
+  const [photo1Error, setPhoto1Error] = useState("");
+  const [photo2Error, setPhoto2Error] = useState("");
+
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Helper to validate a file
+  const validateFile = (file: File, fieldName: string): string => {
+    if (!file) return `${fieldName} is required`;
+    if (!ALLOWED_FILE_TYPES.includes(file.type)) {
+      return `${fieldName} must be an image (JPEG, PNG, WEBP) or PDF`;
+    }
+    if (file.size > MAX_FILE_SIZE) {
+      return `${fieldName} must be less than 5MB`;
+    }
+    return "";
+  };
 
   const handleChange = (name: string, value: string) => {
     setForm((prev) => ({
       ...prev,
       [name]: value,
     }));
-
-    // Clear error for this field when user starts typing
     if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
-    // Clear recaptcha error if user interacts with recaptcha
     if (recaptchaError) setRecaptchaError("");
   };
 
-  // Special handler for phone to block non-digit characters
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value;
     const digitsOnly = rawValue.replace(/\D/g, "");
     handleChange("phone", digitsOnly);
   };
 
+  const handleFileChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    setFile: React.Dispatch<React.SetStateAction<File | null>>,
+    setError: React.Dispatch<React.SetStateAction<string>>,
+    fieldName: string,
+  ) => {
+    const selectedFile = e.target.files?.[0] || null;
+    if (selectedFile) {
+      const validationError = validateFile(selectedFile, fieldName);
+      if (validationError) {
+        setError(validationError);
+        setFile(null);
+      } else {
+        setError("");
+        setFile(selectedFile);
+      }
+    } else {
+      setFile(null);
+      setError(`${fieldName} is required`);
+    }
+  };
+
   const validate = () => {
     const newErrors: Record<string, string> = {};
 
-    // Full name
+    // Existing required fields
     if (!form.fullName.trim()) newErrors.fullName = "Full name is required";
-
-    // Email
     if (!form.email.trim()) {
       newErrors.email = "Email address is required";
     } else if (!/^\S+@\S+\.\S+$/.test(form.email)) {
       newErrors.email = "Please enter a valid email address";
     }
+    if (!form.phone.trim()) newErrors.phone = "Phone number is required";
 
-    // Phone: only required (input already restricts to digits)
-    if (!form.phone.trim()) {
-      newErrors.phone = "Phone number is required";
-    }
+    // New required text fields
+    if (!form.fullAddress.trim())
+      newErrors.fullAddress = "Full address is required";
+    if (!form.suburb.trim()) newErrors.suburb = "Suburb is required";
+    if (!form.statePostcode.trim())
+      newErrors.statePostcode = "State & Post code is required";
 
-    // Guests
-    if (!form.guests) {
-      newErrors.guests = "Number of guests is required";
-    } else if (parseInt(form.guests) < 1) {
-      newErrors.guests = "Guests must be at least 1";
-    }
-
-    if (!form.eventType) newErrors.eventType = "Select event type";
-    if (!form.venue) newErrors.venue = "Select venue";
-    if (!form.date) newErrors.date = "Select event date";
-    if (!form.time) newErrors.time = "Enter event time";
+    // File validations
+    const photo1Err = validateFile(photo1!, "Photo 1");
+    if (photo1Err) newErrors.photo1 = photo1Err;
+    const photo2Err = validateFile(photo2!, "Photo 2");
+    if (photo2Err) newErrors.photo2 = photo2Err;
 
     return newErrors;
   };
@@ -103,17 +144,25 @@ export default function EventForm() {
 
     setIsSubmitting(true);
 
+    // Create FormData to handle file uploads
+    const formData = new FormData();
+    formData.append("fullName", form.fullName);
+    formData.append("email", form.email);
+    formData.append("phone", form.phone);
+    formData.append("source", form.source);
+    formData.append("message", form.message);
+    formData.append("fullAddress", form.fullAddress);
+    formData.append("suburb", form.suburb);
+    formData.append("statePostcode", form.statePostcode);
+    formData.append("slug", pathname);
+    formData.append("captchaToken", captchaToken);
+    if (photo1) formData.append("photo1", photo1);
+    if (photo2) formData.append("photo2", photo2);
+
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/free-sample", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...form,
-          slug: pathname,
-          captchaToken,
-        }),
+        body: formData, // Content-Type will be automatically set to multipart/form-data
       });
 
       const data = await res.json();
@@ -174,93 +223,59 @@ export default function EventForm() {
           />
         </Field>
 
-        <Field label="Number of guests*" error={errors.guests}>
+        {/* Full Address - full width */}
+
+        <Field label="Full Address*" error={errors.fullAddress}>
           <input
-            type="number"
-            min={1}
-            maxLength={4}
             required
-            value={form.guests}
-            placeholder="0"
-            onChange={(e) => handleChange("guests", e.target.value)}
+            maxLength={200}
+            value={form.fullAddress}
+            onChange={(e) => handleChange("fullAddress", e.target.value)}
+            placeholder="Street address, building, etc."
             className="h-[48px] py-4 text-body text-(--text-primary) w-full border-0 focus:outline-none focus:ring-0"
           />
         </Field>
 
-        {/* Custom Select components remain unchanged */}
-        <CustomSelect
-          label="Event type*"
-          options={[
-            "Wedding",
-            "Birthday",
-            "Corporate",
-            "Gala Events",
-            "Christmas Parties",
-            "Awards Nights",
-            "Graduations",
-            "Fundraisers",
-            "End of Year Party",
-            "Sport Events",
-            "School Events",
-            "Universities Events",
-            "Trade Shows",
-            "Engagement Parties",
-            "Bar Mitzvah",
-            "Anniversary",
-            "Christening",
-            "Other Event",
-          ]}
-          value={form.eventType}
-          placeholder="Choose event type"
-          onChange={(val: string) => handleChange("eventType", val)}
-          error={errors.eventType}
-        />
-
-        <CustomSelect
-          label="Venue*"
-          placeholder="Choose your venue"
-          options={["Indoor", "Outdoor", "Destination"]}
-          value={form.venue}
-          onChange={(val: string) => handleChange("venue", val)}
-          error={errors.venue}
-        />
-
-        {/* <Field label="Event date*" error={errors.date}>
+        {/* Suburb and State & Post Code in two columns */}
+        <Field label="Suburb*" error={errors.suburb}>
           <input
-            type="date"
             required
-            value={form.date}
-            onChange={(e) => handleChange("date", e.target.value)}
-            min={new Date().toISOString().split("T")[0]}
-            className="h-[48px] py-4 text-body text-(--text-primary) w-full border-0 focus:outline-none focus:ring-0"
-          />
-        </Field> */}
-
-        <div className="md:col-span-1">
-          <Field label="Event date*" error={errors.date}>
-            <div className="custom-date-input">
-              <input
-                type="date"
-                required
-                value={form.date}
-                onChange={(e) => handleChange("date", e.target.value)}
-                min={new Date().toISOString().split("T")[0]}
-                className="h-[48px] py-4 text-body text-(--text-primary) w-full border-0 focus:outline-none focus:ring-0"
-              />
-            </div>
-          </Field>
-        </div>
-
-        <Field label="Event time*" error={errors.time}>
-          <input
-            placeholder="Event Time from - to (appx)"
-            required
-            maxLength={20}
-            value={form.time}
-            onChange={(e) => handleChange("time", e.target.value)}
+            maxLength={100}
+            value={form.suburb}
+            onChange={(e) => handleChange("suburb", e.target.value)}
+            placeholder="Suburb"
             className="h-[48px] py-4 text-body text-(--text-primary) w-full border-0 focus:outline-none focus:ring-0"
           />
         </Field>
+
+        <Field label="State & Post Code*" error={errors.statePostcode}>
+          <input
+            required
+            maxLength={50}
+            value={form.statePostcode}
+            onChange={(e) => handleChange("statePostcode", e.target.value)}
+            placeholder="e.g. VIC 3000"
+            className="h-[48px] py-4 text-body text-(--text-primary) w-full border-0 focus:outline-none focus:ring-0"
+          />
+        </Field>
+
+        {/* Photo Upload Fields */}
+        <FileUploadField
+          label="Photo 1"
+          error={errors.photo1 || photo1Error}
+          onChange={(e) =>
+            handleFileChange(e, setPhoto1, setPhoto1Error, "Photo 1")
+          }
+          accept="image/jpeg,image/png,image/gif,image/webp,application/pdf"
+        />
+        <FileUploadField
+          label="Photo 2"
+          error={errors.photo2 || photo2Error}
+          onChange={(e) =>
+            handleFileChange(e, setPhoto2, setPhoto2Error, "Photo 2")
+          }
+          accept="image/jpeg,image/png,image/gif,image/webp,application/pdf"
+        />
 
         <div className="md:col-span-2">
           <CustomSelect
@@ -390,6 +405,39 @@ function Field({
         {children}
       </div>
       {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+    </div>
+  );
+}
+
+// Dedicated file upload field to keep code DRY
+function FileUploadField({
+  label,
+  error,
+  onChange,
+  accept,
+}: {
+  label: string;
+  error?: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  accept: string;
+}) {
+  return (
+    <div className="flex flex-col group gap-2">
+      <label className="text-body-low text-(--color-secondary) group-focus-within:text-(--color-brand) transition-all duration-300">
+        {label}
+      </label>
+      <div className="border-b border-gray-300 group-focus-within:border-(--color-brand) transition-all duration-300 py-2">
+        <input
+          type="file"
+          accept={accept}
+          onChange={onChange}
+          className="w-full text-(--text-primary) file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-(--color-brand)/10 file:text-(--color-brand) hover:file:bg-(--color-brand)/20 transition-all duration-300 ease-in"
+        />
+      </div>
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+      <p className="text-xs text-gray-500 mt-1">
+        Accepted: Images (JPEG, PNG, WEBP) or PDF. Max 5MB.
+      </p>
     </div>
   );
 }

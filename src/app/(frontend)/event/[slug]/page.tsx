@@ -33,7 +33,7 @@ const COMPONENT_MAP = {
 
 const PROPS_MAP = {
   commonbanner_component: (data: any) => ({ data }),
-  weare_component: (data: any) => ({ data }),
+  weare_component: (data: any, slug: string) => ({ data, slug }),
   team_component: (data: any) => ({ data }),
   mission_component: (data: any) => ({ data }),
   grid_three_component: (data: any) => ({ data }),
@@ -50,12 +50,13 @@ const PROPS_MAP = {
 export default async function Page({ params }: { params: any }) {
   const { slug } = await params;
 
-  console.log("slug", slug);
+  // console.log("slug", slug);
   if (!slug) notFound();
 
   const data = await fetchPageData(`event/${slug}`);
 
   if (!data || !data.components) {
+    // console.log("DATA FAILED:", data);
     notFound();
   }
 
@@ -66,7 +67,7 @@ export default async function Page({ params }: { params: any }) {
         if (!Component || !value) return null;
 
         const props = PROPS_MAP[key as keyof typeof PROPS_MAP]
-          ? PROPS_MAP[key as keyof typeof PROPS_MAP](value)
+          ? PROPS_MAP[key as keyof typeof PROPS_MAP](value, slug)
           : value;
         return <Component key={key} {...props} />;
       })}

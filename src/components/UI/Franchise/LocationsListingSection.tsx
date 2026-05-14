@@ -9,7 +9,7 @@ const LocationsListingSection = ({ data }: any) => {
     <section className="section bg-(--color-accent) py-[64px] lg:py-[120px]">
       <div className="custom-container flex flex-col items-center gap-12">
         {/* Header */}
-        <div className="flex-center-col text-center gap-3 lg:gap-4 w-full lg:w-[1000px]">
+        <div className="flex-center-col text-center gap-3 lg:gap-4 w-full lg:w-[90%]">
           <Subtitle text={subhead} color="dark" />
           <HeadingRenderer
             text={title}
@@ -24,7 +24,7 @@ const LocationsListingSection = ({ data }: any) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {items?.map((item: any, index: number) => (
             <Link
-              href="/locations"
+              href={item.url}
               key={index}
               className="group relative rounded-2xl overflow-hidden block shadow-2xs"
             >
@@ -58,6 +58,7 @@ const LocationsListingSection = ({ data }: any) => {
                   {/* Title */}
                   <div className="flex items-center gap-2">
                     <svg
+                      className="flex-none"
                       xmlns="http://www.w3.org/2000/svg"
                       width={24}
                       height={24}

@@ -1,11 +1,16 @@
 "use client";
 
-import Image from "next/image";
+import { useState } from "react";
 import Link from "next/link";
 import { footerData, getSocialIcons } from "@/constants/data/FooterMenu";
+import Image from "next/image";
 
 export default function Footer() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const socialIcons = getSocialIcons();
+  const toggleSection = (index: number) => {
+    setOpenIndex((prev) => (prev === index ? null : index));
+  };
 
   return (
     <footer className="bg-(--color-secondary) w-full">
@@ -14,14 +19,14 @@ export default function Footer() {
           {/* Top Grid */}
           <div className="flex flex-wrap justify-between items-start gap-10">
             {/* Logo + Description */}
-            <div className="flex-start-col gap-6 w-full lg:w-[457px] shrink-0">
+            <div className="flex-start-col gap-4 w-full lg:w-[457px] shrink-0">
               <Image
                 src={"/magnet-logo.svg"}
                 alt="Logo"
                 width={190}
                 height={52}
               />
-              <p className="text-(--text-secondary) text-body">
+              <p className="text-(--text-secondary) text-body mb-2">
                 Australia's leading custom photo magnet event service.
                 Professional roaming photography and live on-site printing,
                 trusted across weddings, corporate events, birthdays,
@@ -44,25 +49,68 @@ export default function Footer() {
             </div>
 
             {/* Dynamic Sections (Quick Links & Events) */}
-            {footerData.sections.map((section) => (
-              <div key={section.title} className="flex-start-col gap-6">
-                <h3 className="footer-headings text-(--color-primary)">
-                  {section.title}
-                </h3>
-                <ul className="space-y-4 text-(--text-secondary) text-body">
-                  {section.links.map((item) => (
-                    <li key={item.name} className="inline-link-style">
-                      <Link
-                        href={item.href}
-                        className="hover:text-white transition"
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {footerData.sections.map((section, index) => {
+              const isOpen = openIndex === index;
+
+              return (
+                <div
+                  key={section.title}
+                  className="flex-start-col gap-0 md:gap-6 w-full md:w-auto"
+                >
+                  {/* Header */}
+                  <button
+                    onClick={() => toggleSection(index)}
+                    className="flex gap-2 items-center justify-start w-full md:cursor-default! md:pointer-events-none!"
+                  >
+                    <h3 className="footer-headings text-(--color-primary)">
+                      {section.title}
+                    </h3>
+
+                    {/* Arrow */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={14}
+                      height={24}
+                      viewBox="0 0 14 24"
+                      fill="none"
+                      className={`md:hidden  transition-all duration-300 ${
+                        isOpen ? "rotate-180 -mb-1" : "mb-0"
+                      }`}
+                    >
+                      <path
+                        d="M12 11L7 16L2 11"
+                        stroke="white"
+                        strokeWidth={2}
+                        strokeLinecap="square"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+
+                  {/* Links */}
+                  <ul
+                    className={`
+                      overflow-hidden transition-all duration-500 ease-in-out pb-0.5
+                      md:max-h-none! md:opacity-100
+                      ${isOpen ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0 md:opacity-100 md:max-h-full"}
+                    `}
+                  >
+                    <div className="space-y-4 text-(--text-secondary) text-body pt-2 md:pt-0">
+                      {section.links.map((item) => (
+                        <li key={item.name} className="inline-link-style">
+                          <Link
+                            href={item.href}
+                            className="hover:text-white transition"
+                          >
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </div>
+                  </ul>
+                </div>
+              );
+            })}
 
             {/* Office Hours */}
             <div className="flex-start-col gap-6">
@@ -128,15 +176,15 @@ export default function Footer() {
           </div>
 
           {/* Divider */}
-          <div className="border-t border-(--text-caption) mt-16 mb-6" />
+          <div className="border-t border-(--text-caption) mt-12 mb-6 lg:mt-16 lg:mb-6" />
 
           {/* Bottom Bar */}
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 gap-4">
+          <div className="flex flex-col md:flex-row justify-between md:items-center gap-6">
             <p className="text-body text-(--text-secondary)">
               © Copyright 2026 Magnet Me. All Rights Reserved.
             </p>
 
-            <div className="flex gap-6">
+            <div className="flex gap-4 md:gap-6 items-start justify-start">
               {footerData.bottomLinks.map((link) => (
                 <Link
                   key={link.name}

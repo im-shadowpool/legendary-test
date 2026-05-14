@@ -103,6 +103,7 @@ export const footerData = {
         { name: "How it works", href: "/how-it-works" },
         { name: "Frames", href: "/gallery" },
         { name: "Franchise", href: "/franchise" },
+        { name: "Free Samples", href: "/free-photo-magnets-samples" },
         { name: "FAQs", href: "/faqs" },
         { name: "Blog", href: "/blogs" },
         { name: "Contact", href: "/contact-us" },
@@ -111,18 +112,18 @@ export const footerData = {
     {
       title: "Events",
       links: [
-        { name: "Corporate", href: "/event/corporate-events" },
+        { name: "Corporate Events", href: "/event/corporate-events" },
         { name: "Weddings", href: "/event/weddings" },
         { name: "Graduations", href: "/event/graduations" },
         { name: "Gala", href: "/event/gala" },
         { name: "Birthdays", href: "/event/birthdays" },
-        { name: "Christmas", href: "/event/christmas-parties" },
-        { name: "Awards Night", href: "/event/award-nights" },
+        { name: "Christmas Parties", href: "/event/christmas-parties" },
+        { name: "Award Nights", href: "/event/award-nights" },
         {
           name: "Trade Shows & Brand Activations",
           href: "/event/trade-shows-brand-activations",
         },
-        { name: "Bar-Mitzvah", href: "/event/bar-mitzvah" },
+        { name: "Bar Mitzvah", href: "/event/bar-mitzvah" },
         { name: "Sport Events", href: "/event/sport-events" },
       ],
     },
@@ -147,6 +148,6 @@ export const footerData = {
       name: "Privacy policy",
       href: "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/MagnetMe-Privacy-Policy.pdf",
     },
-    { name: "Sitemap", href: "/sitemap" },
+    // { name: "Sitemap", href: "/sitemap" },
   ],
 };

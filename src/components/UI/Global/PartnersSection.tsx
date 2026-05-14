@@ -11,7 +11,7 @@ type PartnerItem = {
 };
 
 const Row = ({ images, direction = "left" }: any) => {
-  // Triple duplication to ensure seamless scrolling
+  // Triple the images for smooth looping (adjust as needed)
   const duplicated = useMemo(() => {
     return [...images, ...images, ...images];
   }, [images]);
@@ -23,28 +23,30 @@ const Row = ({ images, direction = "left" }: any) => {
   };
 
   return (
-    <div className="">
+    <div className="overflow-hidden">
       <div
-        className={`flex items-center ${
-          direction === "left" ? "marquee-left" : "marquee-right"
-        }`}
+        className={`flex w-max items-center will-change-transform 
+          ${direction === "left" ? "animate-marquee-left" : "animate-marquee-right"}`}
+        style={{
+          transform: "translate3d(0,0,0)",
+          backfaceVisibility: "hidden",
+        }}
       >
         {duplicated.map((item: PartnerItem, i: number) => {
-          if (!item?.src) return null; // skip missing src
-
-          const fallbackSrc = "/images/fallback-logo.png"; // replace with actual fallback
+          if (!item?.src) return null;
+          const fallbackSrc = "/images/fallback-logo.png";
 
           return (
-            <div key={i} className="shrink-0 mr-24">
+            <div key={i} className="shrink-0 mr-12 lg:mr-24 w-[120px]">
               <Image
                 src={imgErrors[i] ? fallbackSrc : item.src}
                 alt={item.alt || "partner"}
                 width={160}
-                height={100}
+                height={120}
                 priority={i < 6}
-                unoptimized // allows external URLs without config (remove if domains are configured)
+                unoptimized
                 onError={() => handleError(i)}
-                className="object-contain max-h-[120px] w-auto"
+                className="object-contain w-full h-[60px]"
               />
             </div>
           );
@@ -61,8 +63,8 @@ const PartnersSection = ({ data }: any) => {
   const { leftslider = [], rightslider = [], title } = finalData;
 
   return (
-    <section className=" relative max-h-[448px] lg:max-h-[650px] py-[64px] bg-(--color-secondary) overflow-hidden">
-      <div className="custom-container overflow-visible flex flex-col justify-center h-full gap-56 opacity-80">
+    <section className=" relative max-h-[548px] lg:max-h-[650px] py-[64px] bg-(--color-secondary) overflow-hidden">
+      <div className=" overflow-visible flex flex-col justify-center h-full gap-64 md:gap-56 opacity-80">
         {leftslider.length > 0 && <Row images={leftslider} direction="left" />}
         {rightslider.length > 0 && (
           <Row images={rightslider} direction="right" />

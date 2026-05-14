@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { forwardRef } from "react";
 
@@ -135,6 +137,30 @@ const Button = forwardRef(function Button(
           rel={isExternal ? "noopener noreferrer" : undefined}
           className={`magnet-button ${className}`}
           ref={ref}
+          onClick={(e) => {
+            if (href === "#contact-us") {
+              e.preventDefault();
+
+              const el = document.getElementById("contact-us");
+              if (!el) return;
+
+              const lenis = (window as any).lenis;
+
+              if (lenis) {
+                lenis.scrollTo(el, {
+                  offset: -50,
+                  duration: 0.5,
+                });
+              } else {
+                const targetPosition =
+                  el.getBoundingClientRect().top + window.scrollY - 50;
+                window.scrollTo({
+                  top: targetPosition,
+                  behavior: "smooth",
+                });
+              }
+            }
+          }}
         >
           <span className="magnet-btn-icon-1">{selectedIcons.leftIcon}</span>
           <p className="text-body text-center">{text}</p>

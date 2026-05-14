@@ -48,7 +48,7 @@ const COMPONENT_MAP = {
 
 const PROPS_MAP = {
   commonbanner_component: (data: any) => ({ data }),
-  weare_component: (data: any) => ({ data }),
+  weare_component: (data: any, slug: string) => ({ data, slug }),
   team_component: (data: any) => ({ data }),
   mission_component: (data: any) => ({ data }),
   grid_three_component: (data: any) => ({ data }),
@@ -71,14 +71,16 @@ const PROPS_MAP = {
 };
 
 export default async function Page({ params }: { params: any }) {
+  // console.log("am working here");
   const { slug } = await params;
 
-  console.log("slug", slug);
+  // console.log("slug", slug);
   if (!slug) notFound();
 
   const data = await fetchPageData(`page/${slug}`);
 
   if (!data || !data.components) {
+    // console.log("DATA FAILED:", data);
     notFound();
   }
 

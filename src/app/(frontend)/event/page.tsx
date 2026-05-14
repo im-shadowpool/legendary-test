@@ -52,6 +52,7 @@ const PROPS_MAP = {
 
 export default async function EventsPage() {
   const data = await fetchPageData(`page/event`);
+  // console.log("am working here");
 
   if (!data || !data.components) {
     notFound();
@@ -66,6 +67,7 @@ export default async function EventsPage() {
         const props = PROPS_MAP[key as keyof typeof PROPS_MAP]
           ? PROPS_MAP[key as keyof typeof PROPS_MAP](value)
           : value;
+        // console.log(props);
         return <Component key={key} {...props} />;
       })}
     </>

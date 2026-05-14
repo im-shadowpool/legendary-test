@@ -16,6 +16,10 @@ const HomePageHero = ({ data }: any) => {
 
     mm.add("(min-width: 1024px)", () => {
       // DESKTOP
+      if (videoRef.current) {
+        videoRef.current.src =
+          "https://magnetme.com.au/wp-content/uploads/2021/06/Magnet-Me-Event-Text-small0b.mp4";
+      }
       runAnimation({
         initialWidth: "30vw",
         initialHeight: "35vh",
@@ -25,6 +29,10 @@ const HomePageHero = ({ data }: any) => {
 
     mm.add("(max-width: 1023px)", () => {
       // MOBILE
+      if (videoRef.current) {
+        videoRef.current.src =
+          "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/05/Magnet-me-video.mp4";
+      }
       runAnimation({
         initialWidth: "66vw",
         initialHeight: "27vh",
@@ -95,34 +103,36 @@ const HomePageHero = ({ data }: any) => {
   return (
     <div
       ref={sectionRef}
-      className="w-full relative h-screen lg:h-[110vh] overflow-hidden"
+      className="w-full relative h-screen lg:h-[115vh] overflow-hidden"
     >
       {/* Background Video */}
       <div className="absolute inset-0 z-0 bg-black">
         <video
-          src="https://magnetme.com.au/wp-content/uploads/2026/03/banner-animation-5-1.mp4"
+          src="https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/banner-animation-5-1-1.mp4"
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
           className="w-full h-full object-cover opacity-70"
         />
       </div>
 
       {/* Content */}
       <div className="relative z-10 h-full flex-center-col text-center">
-        <h1 className="text-h1-primary text-(--color-primary) max-w-[1115px] hero-text px-6 lg:px-0">
-          {title}
+        <h1 className="text-h1-primary text-(--color-primary) max-w-[855px] hero-text px-6 lg:px-0">
+          WE CAPTURE EVENTS INTO INSTANT
+          <span className="text-(--color-brand)"> PHOTO MAGNETS</span>
         </h1>
 
         {/* Animated Video */}
         <div className="flex justify-center pointer-events-none">
           <video
             ref={videoRef}
-            src="https://magnetme.com.au/wp-content/uploads/2021/06/Magnet-Me-Event-Text-small0b.mp4"
             loop
             muted
             playsInline
+            preload="auto"
             className="object-cover w-0 h-0"
           />
         </div>

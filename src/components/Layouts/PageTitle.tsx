@@ -1,3 +1,9 @@
+"use client";
+
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "@/lib/gsap";
+
 const PageTitle = ({ data }: any) => {
   const { title, description, background } = data;
   const defaultBanner =
@@ -7,9 +13,32 @@ const PageTitle = ({ data }: any) => {
   const videoUrl = isVideo ? background : null;
   const imageUrl = !isVideo ? background || defaultBanner : defaultBanner;
 
+  // const sectionRef = useRef<HTMLElement>(null);
+
+  // useGSAP(
+  //   () => {
+  //     const tl = gsap.timeline({ delay: 0.7 });
+
+  //     tl.fromTo(
+  //       ".page-title-heading",
+  //       { opacity: 0, y: 40 },
+  //       { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+  //     );
+
+  //     tl.fromTo(
+  //       ".page-title-desc",
+  //       { opacity: 0, y: 40 },
+  //       { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+  //       "-=0.6",
+  //     );
+  //   },
+  //   { scope: sectionRef },
+  // );
+
   return (
     <section
-      className={`relative w-full h-[90vh] md:h-[620px] lg:h-[746px] max-h-[90vh] flex items-center justify-center text-center overflow-hidden`}
+      // ref={sectionRef}
+      className={`relative w-full h-screen lg:h-screen max-h-[1400px] flex items-center justify-center text-center overflow-hidden`}
     >
       {/* Background Media */}
       {isVideo ? (
@@ -19,6 +48,7 @@ const PageTitle = ({ data }: any) => {
           loop
           muted
           playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectFit: "cover" }}
         >
@@ -37,10 +67,12 @@ const PageTitle = ({ data }: any) => {
       <div className="absolute inset-0 bg-black/70" />
 
       {/* Content */}
-      <div className="custom-container relative z-10 flex-center-col -mb-8">
+      <div className="custom-container relative z-10 flex-center-col -mb-8 py-10">
         <div className="w-full lg:w-[1120px] px-6 flex-center-col gap-4 lg:gap-6">
-          <h1 className="text-h1 text-(--color-primary)">{title}</h1>
-          <p className="text-(--text-tertiary) text-body w-full lg:w-[815px]">
+          <h1 className="text-h1 text-(--color-primary) page-title-heading">
+            {title}
+          </h1>
+          <p className="text-(--text-tertiary) text-body w-full lg:w-[815px] page-title-desc">
             {description}
           </p>
         </div>

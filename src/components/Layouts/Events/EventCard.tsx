@@ -4,7 +4,7 @@ import Link from "next/link";
 const EventCard = ({ item }: { item: any }) => {
   return (
     <Link href={`/event/${item.link}`} className="block group">
-      <div className="relative w-full h-[370px] lg:h-[516px] overflow-hidden rounded-2xl">
+      <div className="relative w-full h-[370px] lg:h-[516px] 2xl:h-[65vh] overflow-hidden rounded-2xl">
         {/* FRONT */}
         <div className="absolute inset-0 z-2 transition-opacity duration-950 ease-[cubic-bezier(0.85,0,0.41,0.99)] group-hover:opacity-0">
           <div className="relative w-full h-full overflow-hidden">

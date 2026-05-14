@@ -12,7 +12,7 @@ const Events = ({ data }: any) => {
         <Subtitle text={subhead} color="dark" />
         <HeadingRenderer
           text={title}
-          className="text-h2 text-(--color-secondary) w-full lg:w-[900px] text-center"
+          className="text-h2 text-(--color-secondary) w-full text-center"
         />
       </div>
       {/* Cards */}
@@ -29,7 +29,7 @@ const Events = ({ data }: any) => {
           {/* CTA CARD (manual) */}
           <div className="max-sm:flex-[0_0_85%] max-sm:snap-start">
             <div className="block group">
-              <div className="relative w-full h-[370px] lg:h-[516px] overflow-hidden rounded-[16px]">
+              <div className="relative w-full h-[370px] lg:h-[516px] 2xl:h-[65vh] overflow-hidden rounded-[16px]">
                 <div className="relative w-full h-full">
                   <Image
                     src="https://magnetme.com.au/wp-content/uploads/2026/03/SnapInsta.to_625309095_18171328420388677_6784503685945725735_n.webp"
@@ -45,7 +45,7 @@ const Events = ({ data }: any) => {
                   <h5 className="text-(--color-primary) text-h3-primary">
                     Planning an event?
                   </h5>
-                  <Button text="contact us now" href="/contact-us" />
+                  <Button text="contact us now" href="#contact-us" />
                 </div>
               </div>
             </div>

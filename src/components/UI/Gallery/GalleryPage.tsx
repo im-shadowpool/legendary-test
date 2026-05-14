@@ -8,7 +8,7 @@ const GalleryPage = ({ data }: any) => {
   return (
     <>
       <section className="px-4 py-[64px] lg:py-[120px] flex-center-col gap-12 lg:gap-16 bg-(--color-accent)">
-        <div className="flex-center-col gap-3 lg:gap-4 w-full lg:w-[1100px]">
+        <div className="flex-center-col gap-3 lg:gap-4 w-full lg:w-[1200px]">
           <Subtitle text={subhead} color="dark" />
 
           <HeadingRenderer

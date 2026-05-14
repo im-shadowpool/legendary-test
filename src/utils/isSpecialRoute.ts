@@ -3,7 +3,9 @@ export const SPECIAL_ROUTES = [
   "/contact-us",
   "/blogs",
   "/blog",
-  "/thank-you",
+  "/tye",
+  "/tyl",
+  "/free-photo-magnets-samples",
 ];
 
 export const isSpecialRoute = (pathname: string): boolean => {

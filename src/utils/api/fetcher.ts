@@ -5,7 +5,7 @@ export async function fetchFromAPI(
   { revalidate = 60, headers = {} } = {},
 ) {
   const url = `${BASE_API_URL}/wp-json/meta/v1/${endpoint}`;
-  console.log(url);
+  // console.log(url);
   try {
     const res = await fetch(url, {
       next: { revalidate },
@@ -15,7 +15,7 @@ export async function fetchFromAPI(
       },
     });
 
-    console.log("res", res);
+    // console.log("res", res);
 
     if (!res.ok) {
       console.error("API failed:", res.status, url);

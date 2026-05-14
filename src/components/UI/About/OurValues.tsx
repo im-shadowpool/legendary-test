@@ -27,7 +27,10 @@ const OurValues = ({ data }: any) => {
               {/* Icon */}
               <div className="w-16 h-16 relative mb-2 lg:mb-4">
                 <Image
-                  src={item.icon}
+                  src={
+                    item?.icon ||
+                    "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/attraction.gif"
+                  }
                   alt={item.title}
                   width={64}
                   height={64}

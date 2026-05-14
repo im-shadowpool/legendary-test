@@ -43,6 +43,7 @@ export default async function Page({ params }: { params: any }) {
   const data = await fetchPageData(`page/home`);
 
   if (!data || !data.components) {
+    // console.log("DATA FAILED:", data);
     notFound();
   }
 

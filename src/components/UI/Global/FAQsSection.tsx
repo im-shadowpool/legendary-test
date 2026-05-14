@@ -13,7 +13,7 @@ const FAQsSection = ({ data, slug }: any) => {
     slug === "faqs"
       ? "pt-[180px] lg:pt-[264px] pb-[24px]"
       : "pt-[64px] pb-[64px] lg:pt-[120px] lg:pb-[120px]";
-  const initialCount = slug === "faqs" ? 6 : 3;
+  const initialCount = slug === "faqs" ? 100 : 3;
 
   return (
     <section

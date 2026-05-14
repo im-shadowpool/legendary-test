@@ -29,13 +29,13 @@ const HomePageCardSlider = ({ data }: any) => {
     "gala",
     "birthdays",
     "christmas parties",
-    "award night",
+    "award nights",
     "trade shows and brand activations",
     "bar mitzvah",
     "sport events",
   ];
 
-  const filteredAndSortedCards = data.cards
+  const filteredAndSortedCards = cards
     .filter((card: any) => allowedTitles.includes(normalize(card.title)))
     .sort(
       (a: any, b: any) =>
@@ -86,7 +86,15 @@ const HomePageCardSlider = ({ data }: any) => {
           duration: 5,
           ease: "none",
         },
-        "-=0.8",
+        // "-=0.8",
+        isTablet ? "-=0.2" : "-=0.8",
+      ).to(
+        track,
+        {
+          pointerEvents: "none",
+        },
+        // "-=1",
+        isTablet ? "-=0.2" : "-=0.3",
       );
 
       // Step 3: End frame enters
@@ -98,6 +106,14 @@ const HomePageCardSlider = ({ data }: any) => {
           y: 0,
           duration: 1,
           ease: "power2.out",
+
+          onStart: () => {
+            endFrame.style.zIndex = "20";
+          },
+
+          onReverseComplete: () => {
+            endFrame.style.zIndex = "0";
+          },
         },
         "-=0.5",
       );
@@ -182,7 +198,7 @@ const HomePageCardSlider = ({ data }: any) => {
       });
     }, container);
 
-    // 🔁 Proper cleanup to avoid "removeChild" error
+    // Proper cleanup to avoid "removeChild" error
     return () => {
       // 1. Kill all ScrollTriggers associated with this container
       ScrollTrigger.getAll().forEach((st) => {
@@ -193,11 +209,7 @@ const HomePageCardSlider = ({ data }: any) => {
           st.kill(false); // false = don't reset pin spacing (prevents extra DOM mutations)
         }
       });
-
-      // 2. Revert GSAP context (removes pin spacers, kills tweens)
       ctx.revert();
-
-      // 3. Force a refresh to clean up any lingering ScrollTrigger state
       ScrollTrigger.refresh();
     };
   }, []);
@@ -210,7 +222,10 @@ const HomePageCardSlider = ({ data }: any) => {
         className={`relative w-full h-screen overflow-hidden flex items-center justify-center __homePageCardSlider bg-(--color-accent)`}
       >
         {/* Starting Frame */}
-        <div ref={startFrameRef} className={styles.fixedSectionContent}>
+        <div
+          ref={startFrameRef}
+          className={`${styles.fixedSectionContent} z-0`}
+        >
           <div className="max-w-full lg:max-w-[980px] flex-center-col gap-4 px-6 lg:px-0">
             <Subtitle text={event_one.subhead} color="dark" />
             <HeadingRenderer
@@ -231,13 +246,13 @@ const HomePageCardSlider = ({ data }: any) => {
           <div className="max-w-full lg:max-w-[980px] flex-center-col gap-8 px-6 lg:px-0">
             <HeadingRenderer
               text={event_two.title}
-              className="text-h1-primary text-(--color-secondary)"
+              className="text-h1-primary text-(--color-secondary) pointer-events-none z-0"
             />
             <Button text={event_two.buttontext} href={event_two.buttonlink} />
           </div>
         </div>
         {/* The Cards Track */}
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full z-10">
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full z-0">
           <div
             ref={trackRef}
             className={`${styles.cardContainer} pointer-events-auto`}

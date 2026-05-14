@@ -63,7 +63,9 @@ const FranchiseOpportunity = ({ data }: any) => {
           {/* Video */}
           {isPlaying && (
             <video
-              src={video}
+              src={
+                "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/05/MAgnet-me-business-oportunity-Website-NI.mp4"
+              }
               autoPlay
               controls
               playsInline

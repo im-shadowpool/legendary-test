@@ -235,7 +235,7 @@ export const GalleryImageGrid: React.FC<GalleryImageGridProps> = ({
         {images.map((img: any, index: number) => (
           <div
             key={index}
-            className="relative group overflow-hidden  cursor-pointer bg-gray-100 h-[130.26px] sm:h-[255.639px]"
+            className="relative group overflow-hidden  cursor-pointer bg-gray-100 rounded h-[154px] md:h-[186px] lg:h-[35vh]"
             onClick={() => openLightbox(index)}
           >
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 z-10" />
@@ -243,7 +243,7 @@ export const GalleryImageGrid: React.FC<GalleryImageGridProps> = ({
             <img
               src={img.image}
               alt={"gallery"}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+              className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 ease-in-out group-hover:scale-105"
               loading="lazy"
             />
             <div className="absolute inset-0 ring-1 ring-inset ring-black/5  z-20 pointer-events-none" />

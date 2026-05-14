@@ -12,7 +12,15 @@ import { usePathname } from "next/navigation";
 
 export default function Header() {
   const pathname = usePathname();
-  const isLightPage = isSpecialRoute(pathname);
+  const [is404Page, setIs404Page] = useState(false);
+
+  useEffect(() => {
+    const notFoundElement = document.querySelector('[data-page="not-found"]');
+
+    setIs404Page(!!notFoundElement);
+  }, [pathname]);
+
+  const isLightPage = is404Page || isSpecialRoute(pathname);
   const [isVisible, setIsVisible] = useState(true);
   const [isAboveThreshold, setIsAboveThreshold] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,8 +29,12 @@ export default function Header() {
   const direction = useRef<"down" | "up">("down");
   const scrollYAtDirectionChange = useRef(0);
 
-  const THRESHOLD = pathname === "/" ? 2000 : 800;
-  const SCROLL_UP_BUFFER = 100; // px
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
+
+  const THRESHOLD =
+    pathname === "/" ? (isMobile ? 90 : 2000) : isMobile ? 90 : 600;
+
+  const SCROLL_UP_BUFFER = 100;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,7 +93,7 @@ export default function Header() {
         className={`w-full fixed top-0 left-0 z-50 header-magnet transition-all duration-300 ease-in-out ${
           isVisible
             ? "translate-y-0 opacity-100"
-            : "-translate-y-10 opacity-0 pointer-events-none"
+            : "lg:-translate-y-10 lg:opacity-0 lg:pointer-events-none"
         } ${!isAboveThreshold ? "header-scrolled" : ""}`}
       >
         {/* Top header */}
@@ -99,7 +111,7 @@ export default function Header() {
             />
           </svg>
           <span className="text-body text-(--color-primary)">
-            <span className="hidden lg:inline">FRANCHISE AVAILABLE: </span>
+            <span className="hidden md:inline">FRANCHISE AVAILABLE: </span>
             NSW | VIC | QLD | WA | SA | TAS | ACT
           </span>
         </div>
@@ -119,7 +131,7 @@ export default function Header() {
             <button
               ref={buttonRef}
               onClick={() => setIsMenuOpen(true)}
-              className="lg:hidden"
+              className="hamburger-button lg:hidden"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -130,13 +142,13 @@ export default function Header() {
               >
                 <path
                   d="M0.928711 4.5L20.9287 4.5"
-                  stroke="white"
+                  stroke={isLightPage ? "var(--text-primary)" : "white"}
                   strokeWidth={1.5}
                   strokeLinecap="round"
                 />
                 <path
                   d="M0.928711 14.5L20.9287 14.5"
-                  stroke="white"
+                  stroke={isLightPage ? "var(--text-primary)" : "white"}
                   strokeWidth={1.5}
                   strokeLinecap="round"
                 />
@@ -156,6 +168,7 @@ export default function Header() {
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
         triggerRef={buttonRef}
+        pathname={pathname}
       />
     </>
   );

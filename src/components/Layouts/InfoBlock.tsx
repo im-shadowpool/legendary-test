@@ -7,12 +7,25 @@ import Button from "./Button";
 import HeadingRenderer from "./HeadingRenderer";
 import ParagraphRenderer from "./ParagraphRenderer";
 
-export default function InfoBlock({ data, reverse = false }: any) {
+export default function InfoBlock({ data, reverse = false, slug = "" }: any) {
   const { subhead, title, description, button, media } = data;
 
   const imageUrl =
     media?.url ||
     "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/Design-front_2x.webp";
+
+  const isWedding = slug === "weddings";
+
+  const imageStyles = {
+    weddings: "object-contain object-top lg:object-center",
+    "about-us": "object-cover object-center lg:object-center",
+    default: "object-cover object-top lg:object-center",
+  };
+
+  console.log(slug);
+
+  const imageClassName =
+    imageStyles[slug as keyof typeof imageStyles] || imageStyles.default;
 
   return (
     <section className="section bg-(--color-primary) py-[64px] lg:py-[120px]">
@@ -49,11 +62,11 @@ export default function InfoBlock({ data, reverse = false }: any) {
 
           {/* 🖼 Image */}
           <div
-            className={`relative w-full h-[250px] sm:h-[450px] lg:h-full rounded-2xl overflow-hidden ${
+            className={`relative w-full ${isWedding ? "h-[300px]" : "h-[274px]"} sm:h-[450px] lg:h-full rounded-2xl overflow-hidden ${
               reverse ? "lg:col-start-1" : ""
             }`}
           >
-            <Image src={imageUrl} alt="Info" fill className="object-cover" />
+            <Image src={imageUrl} alt="Info" fill className={imageClassName} />
           </div>
         </div>
       </div>

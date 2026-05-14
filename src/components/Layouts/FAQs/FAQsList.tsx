@@ -76,7 +76,7 @@ const FAQsList = ({ faqs, initialCount = 3, sectionRef }: any) => {
         <div className="flex-center-col mt-10 lg:mt-12">
           <button
             onClick={toggleView}
-            className="px-4 py-[12px] rounded-full bg-[#F0F0F0] text-(--text-primary) gap-2 flex-center-row faq-question-text-button transition-all duration-300 border-[1.7px] border-transparent hover:border-[1.7px] hover:border-(--color-brand) hover:text-(--color-brand) hover:bg-(--color-accent) focus:border-[1.7px] focus:border-(--color-brand) focus:text-(--color-brand) focus:bg-(--color-accent) active:border-[1.7px] active:border-(--color-brand) active:text-(--color-brand) active:bg-(--color-accent)"
+            className="px-4 py-[12px] rounded-full bg-[#F0F0F0] text-(--text-primary) gap-2 flex-center-row faq-question-text-button transition-all duration-300 border-[1.7px] border-transparent hover:border-[1.7px] hover:border-(--color-brand) hover:text-(--color-brand) hover:bg-(--color-accent) active:border-[1.7px] active:border-(--color-brand) active:text-(--color-brand) active:bg-(--color-accent)"
           >
             {showAll ? "View Less" : "View More"}
             <div

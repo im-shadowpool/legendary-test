@@ -19,7 +19,7 @@ const HomePageFranchiseOpportunity = ({ data }: any) => {
     <section className="section relative bg-(--color-accent) py-[64px] lg:py-[120px]">
       <div className="custom-container flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10 lg:gap-12">
         {/* Left section */}
-        <div className="flex-start-col gap-4 w-full lg:w-[729px] shrink-0">
+        <div className="flex-start-col gap-4 w-full lg:w-[800px] shrink-0">
           <Subtitle text={subhead} color="dark" />
           <HeadingRenderer
             text={title}
@@ -55,6 +55,8 @@ const HomePageFranchiseOpportunity = ({ data }: any) => {
             autoPlay
             loop
             muted
+            playsInline
+            preload="auto"
             className="w-full h-full object-cover rounded-3xl"
           />
         </div>

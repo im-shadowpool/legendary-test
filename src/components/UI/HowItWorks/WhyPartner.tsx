@@ -26,13 +26,13 @@ export default function WhyPartner({ data }: any) {
         </div>
 
         {/* Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-start">
           {/* 🖼 Image with smooth transition */}
           <div className="relative rounded-2xl overflow-hidden h-[250px] sm:h-[450px] lg:h-full">
             <Image
               src={
                 image ||
-                "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/a97ac243591bb70910183531a9ab9ac812cd6b87.webp"
+                "https://cms-magnetme.teamelephant.me/wp-content/uploads/2026/04/247491dabd6710accd0732be2c13c18cacaaa7ef-1.webp"
               }
               alt="Why Partner"
               fill

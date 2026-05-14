@@ -50,9 +50,9 @@ export const menuData: MenuItem[] = [
         ],
       },
       {
-        title: "Social Events",
+        title: "Private Events",
         items: [
-          { label: "Private Events", href: "/event/private-events" },
+          // { label: "Private Events", href: "/event/private-events" },
           { label: "Weddings", href: "/event/weddings" },
           { label: "Engagement Parties", href: "/event/engagement-parties" },
           { label: "Birthdays", href: "/event/birthdays" },

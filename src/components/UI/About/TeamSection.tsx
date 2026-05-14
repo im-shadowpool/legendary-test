@@ -26,15 +26,15 @@ export default function TeamSection({ data }: any) {
         </div>
 
         {/* Row 1 → Center 2 items */}
-        <div className="flex justify-center flex-col md:flex-row items-center gap-8 lg:gap-12 w-full">
+        {/* <div className="flex justify-center flex-col md:flex-row items-center gap-8 lg:gap-12 w-full">
           {firstRow.map((member: any, index: number) => (
             <Card key={index} member={member} index={index} />
           ))}
-        </div>
+        </div> */}
 
         {/* Row 2 → 4 items */}
         <div className="flex flex-wrap flex-col md:flex-row justify-center items-center gap-8 lg:gap-6 w-full">
-          {secondRow.map((member: any, index: number) => (
+          {items.map((member: any, index: number) => (
             <Card key={index} member={member} index={index + 2} />
           ))}
         </div>
@@ -48,20 +48,20 @@ function Card({ member, index }: { member: any; index: number }) {
 
   return (
     <div
-      className="group w-[298px] [perspective:1000px]"
+      className="group w-[298px] perspective-[1000px] transition-all duration-800"
       style={{
         transform: `rotate(${rotation}deg)`,
       }}
     >
-      <div className="relative w-full h-[384px] transition-transform duration-[800ms] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-hover:scale-[1.03]">
+      <div className="relative w-full h-[384px] transition-transform duration-800 transform-3d group-hover:transform-[rotateY(180deg)]">
         {/* Front */}
-        <div className="absolute border-[8px] border-(--color-primary) inset-0 bg-(--color-primary) rounded-2xl overflow-hidden [backface-visibility:hidden] flex flex-col gap-6">
+        <div className="absolute border-8 border-(--color-primary) inset-0 bg-(--color-primary) rounded-2xl overflow-hidden backface-hidden flex flex-col gap-6">
           <div className="relative max-h-[270px] h-full overflow-hidden rounded-lg">
             <Image
               src={member.image}
               alt={member.name}
               fill
-              className="object-cover scale-150"
+              className="object-cover"
             />
           </div>
 
@@ -74,7 +74,7 @@ function Card({ member, index }: { member: any; index: number }) {
         </div>
 
         {/* Back */}
-        <div className="absolute inset-0 bg-(--color-primary) rounded-2xl p-5 flex items-center justify-center text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
+        <div className="absolute inset-0 bg-(--color-primary) rounded-2xl p-5 flex items-center justify-center text-center transform-[rotateY(180deg)] backface-hidden">
           <p className="text-body text-(--text-primary)">
             {member.description}
           </p>

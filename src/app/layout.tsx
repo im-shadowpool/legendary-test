@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
+import TransitionProvider from "@/providers/TransitionProvider";
 import localFont from "next/font/local";
 import Header from "@/components/Layouts/Header/Header";
 import Footer from "@/components/Layouts/Footer";
@@ -49,7 +50,9 @@ export default function RootLayout({
       <body className="min-h-full">
         <SmoothScrollProvider>
           <Header />
+
           {children}
+
           <Footer />
         </SmoothScrollProvider>
       </body>

@@ -10,7 +10,7 @@ import ParagraphRenderer from "@/components/Layouts/ParagraphRenderer";
 export default function HowItWorksCards({ data }: any) {
   const { title, subhead, description, items } = data;
   return (
-    <section className="section relative bg-(--color-brand) pt-[64px] lg:pt-[120px] pb-[200px] flex flex-col gap-16 lg:gap-24">
+    <section className="section relative bg-(--color-brand) pt-[64px] lg:pt-[120px] pb-[140px] md:pb-[200px] flex flex-col gap-16 lg:gap-24">
       {/* Header */}
       <div className="custom-container">
         <div className="flex flex-col lg:flex-row justify-between items-end gap-6 lg:gap-16">
@@ -36,12 +36,12 @@ export default function HowItWorksCards({ data }: any) {
           return (
             <div
               key={card.id}
-              className="sticky top-[64px] lg:top-[80px] 2xl:top-[120px]"
+              className={`sticky top-[36px] md:top-[64px] lg:top-[74px] 2xl:top-[120px]`}
               style={{ zIndex: 10 + i }}
             >
               <div
                 className={clsx(
-                  "rounded-[24px] lg:rounded-[48px] py-12 lg:py-16 px-6 lg:px-24 min-h-[60vh] flex items-center justify-between flex-col lg:flex-row gap-12 shadow",
+                  "rounded-[24px] lg:rounded-[48px] py-12 lg:py-16 px-6 lg:px-24 min-h-full h-[800px] md:h-auto md:min-h-[60vh] flex items-center justify-between flex-col lg:flex-row gap-12 shadow",
                   isEven ? "bg-[#fee2e2]" : "bg-(--color-primary)",
                 )}
               >
@@ -63,7 +63,7 @@ export default function HowItWorksCards({ data }: any) {
 
                 {/* Right Image */}
                 <FlipCard
-                  className={`${isEven ? "rotate-[-6deg]" : "rotate-[6deg]"}`}
+                  className={`${isEven ? "-rotate-6" : "rotate-6"}`}
                   frontImage={card.image}
                   backImage={card.image2}
                 />

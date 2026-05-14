@@ -12,6 +12,8 @@ import Image from "next/image";
 import HeadingRenderer from "@/components/Layouts/HeadingRenderer";
 import backup from "@/constants/data/backup.json";
 import { resolveCMSData } from "@/utils/resolveCMSData";
+import Link from "next/link";
+import Button from "@/components/Layouts/Button";
 
 export default function TestimonialsSlider({ data }: any) {
   const fallback = backup?.components?.testimonials_component;
@@ -40,7 +42,7 @@ export default function TestimonialsSlider({ data }: any) {
   const isNextDisabled = index >= endIndex;
 
   return (
-    <section className="section bg-(--color-primary) py-[64px] lg:py-[120px] overflow-hidden">
+    <section className="section bg-(--color-primary) py-[64px] lg:py-[120px] overflow-hidden border-y border-[#CECECE]">
       <div className="custom-container">
         <div className="flex flex-col gap-8 lg:gap-16">
           {/* Header Section */}
@@ -49,7 +51,7 @@ export default function TestimonialsSlider({ data }: any) {
               <Subtitle text={subhead} color="dark" />
               <HeadingRenderer
                 text={title}
-                className="text-h2 text-(--color-secondary)"
+                className="text-h2 text-(--color-secondary) w-[300px] md:w-full"
               />
             </div>
 
@@ -137,9 +139,9 @@ export default function TestimonialsSlider({ data }: any) {
                       <p className="text-body font-bold! text-(--text-primary)">
                         {item.author}
                       </p>
-                      <p className="text-body-low text-(--text-caption)">
+                      {/* <p className="text-body-low text-(--text-caption)">
                         {item.time}
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                 </div>
@@ -147,7 +149,7 @@ export default function TestimonialsSlider({ data }: any) {
             ))}
           </Splide>
           {
-            <div className="flex justify-between items-center w-full gap-2 lg:hidden">
+            <div className="flex justify-center items-center w-full gap-2 lg:hidden">
               {/* Prev */}
               <button
                 onClick={prevSlide}
@@ -179,24 +181,46 @@ export default function TestimonialsSlider({ data }: any) {
           }
           {/* Footer Section */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-            <Image
-              src="/testimonials/Facebook rating light.svg"
-              alt="ratings"
-              width={300}
-              height={67}
-            />
-            <Image
-              src="/testimonials/Easyweddings rating.svg"
-              alt="ratings"
-              width={150}
-              height={150}
-            />
-            <Image
-              src="/testimonials/Google rating light.svg"
-              alt="ratings"
-              width={300}
-              height={67}
-            />
+            <Link
+              href={"https://www.facebook.com/magnetme.com.au/reviews/"}
+              target="_blank"
+            >
+              <Image
+                src="/testimonials/Facebook rating light.svg"
+                alt=" facebook ratings"
+                width={300}
+                height={67}
+              />
+            </Link>
+            <Link
+              href={
+                "https://www.easyweddings.com.au/PhotoBooth/Melbourne/MagnetMe/"
+              }
+              target="_blank"
+            >
+              <Image
+                src="/testimonials/Easyweddings rating.svg"
+                alt="easyweddings ratings"
+                width={150}
+                height={150}
+              />
+            </Link>
+            <Link
+              href={
+                "https://www.google.com/search?hl=en-PH&gl=ph&q=Magnet-Me+-+Event+Photo+Magnets+%E2%AD%90%E2%AD%90%E2%AD%90%E2%AD%90%E2%AD%90&ludocid=15793404106440264783&lsig=AB86z5U3tbutASUFwZPVHGp1LRTT#lrd=0x6ad6697c27beb949:0xdb2d715b96914c4f,1,,,"
+              }
+              target="_blank"
+            >
+              <Image
+                src="/testimonials/Google rating light.svg"
+                alt="google ratings"
+                width={300}
+                height={67}
+              />
+            </Link>
+          </div>
+          <div className="w-full flex justify-center">
+            <Button text={"Enquire Now"} href={"#contact-us"} />
           </div>
         </div>
       </div>

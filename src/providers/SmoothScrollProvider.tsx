@@ -13,16 +13,24 @@ export default function SmoothScrollProvider({
   const lenisRef = useRef<Lenis | null>(null);
   const pathname = usePathname();
 
-  // Initialize Lenis and ScrollTrigger once
+  // Detect iOS or Safari browsers
+  const isSafariOrIOS = () => {
+    if (typeof window === "undefined") return false;
+    const ua = navigator.userAgent;
+    const isIOS = /iPad|iPhone|iPod/.test(ua);
+    const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+    return isIOS || isSafari;
+  };
+
   useEffect(() => {
+    if (isSafariOrIOS()) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) => 1 - Math.pow(1 - t, 3),
     });
 
     lenisRef.current = lenis;
-
-    // 🔥 expose globally
     (window as any).lenis = lenis;
 
     lenis.on("scroll", ScrollTrigger.update);
@@ -31,10 +39,8 @@ export default function SmoothScrollProvider({
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
-
     requestAnimationFrame(raf);
 
-    // Proxy ScrollTrigger to Lenis
     ScrollTrigger.scrollerProxy(document.body, {
       scrollTop(value?: number) {
         if (value !== undefined) {
@@ -61,20 +67,22 @@ export default function SmoothScrollProvider({
     };
   }, []);
 
-  // Reset scroll and refresh on route change
   useEffect(() => {
     const lenis = lenisRef.current;
-    if (!lenis) return;
 
-    // Give the DOM time to update after navigation
-    const resetScroll = () => {
-      lenis.scrollTo(0, { immediate: true });
-      lenis.resize(); // Recalculate scrollable height
+    const refresh = () => {
       ScrollTrigger.refresh();
     };
 
-    // Use a microtask or a short delay to ensure new content is rendered
-    setTimeout(resetScroll, 0);
+    if (lenis) {
+      setTimeout(() => {
+        lenis.scrollTo(0, { immediate: true });
+        lenis.resize();
+        refresh();
+      }, 0);
+    } else {
+      setTimeout(refresh, 0);
+    }
   }, [pathname]);
 
   return <>{children}</>;
